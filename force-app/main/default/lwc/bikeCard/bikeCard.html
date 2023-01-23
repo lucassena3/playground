@@ -1,0 +1,43 @@
+<template>
+    <lightning-card variant="Narrow" icon-name="standard:activations">
+    <div>
+        <div>Name: {name}</div>
+        <div>Description: {description}</div>
+        <lightning-input type="text" label="Enter some text" onchange={searchKeyword}></lightning-input>
+        <lightning-button 
+            label="Enviar pesquisa" 
+            class="slds-m-right_small"
+            onclick={enviarPesquisa}>
+        </lightning-button>
+        <h1>-------</h1>
+        <lightning-button 
+            label="Manter Quantidade" 
+            class="slds-m-right_small"
+            onclick={handleManterQuantidade}>
+        </lightning-button>
+        <table class="tableItens">
+            <tbody>
+                <template for:each={produtos} for:item="produto" for:index="index">
+                    <tr key={produto.id}>
+                        <td class="coluna-input">
+                            <b>{produto.label}</b>
+                            <br>
+                            <lightning-input 
+                                variant="label-hidden"
+                                type="checkbox"
+                                data-element="manterQuantidade-checkbox"
+                                onchange={handleCheckboxChange}>
+                            </lightning-input>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <p>Checked items: {selection}</p>
+        <lightning-badge label={material}></lightning-badge>
+        <lightning-badge label={category}></lightning-badge>
+        <div class="price">Price: {price}</div>
+        <div><img src={pictureUrl}/></div>
+    </div>
+    </lightning-card>
+</template>
